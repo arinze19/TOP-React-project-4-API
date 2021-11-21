@@ -32,12 +32,13 @@ const swaggerOptions = {
     },
   ],
   basedir: __dirname,
-  files: ['./routes/**/*.js'],
+  files: ['../routes/*.js'],
 };
 
 const config = {
   swaggerOptions,
   port,
+  secret: process.env.SECRET,
   database: {
     url: process.env.MONGO_URL,
   },

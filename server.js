@@ -11,6 +11,8 @@ const expressSwagger = expressSwaggerGenerator(app);
 const Config = require('./config');
 const Routes = require('./routes');
 
+const { handleError } = require('./helpers/ErrorHelpers');
+
 const bootstrap = async () => {
   await mongoose.connect(Config.database.url);
   // Setup middleware
@@ -19,10 +21,16 @@ const bootstrap = async () => {
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
 
-  // use routes
-  app.use('/api/v1', Routes.route(router))
-
   expressSwagger(Config.swaggerOptions);
+
+  // use routes
+  app.use('/api/v1', Routes.route(router));
+
+  // handle errors
+  app.use((err, req, res, next) => {
+    handleError(err, res);
+    next();
+  });
 
   app.listen(Config.port);
 };
