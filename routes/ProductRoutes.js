@@ -6,6 +6,7 @@ class ProductRoutes {
     /**
      * @route POST /product/:id/comment
      * @group Product
+     * @param {PostCommentRequest.model} example.body.required
      * @produces application/json
      * @returns {Comment.model} 201
      * @returns {Error} 400 - client side error
@@ -18,6 +19,7 @@ class ProductRoutes {
     /**
      * @route POST /product
      * @group Product
+     * @param {PostProductRequest.model} example.body.required
      * @produces application/json
      * @returns {Product.model} 201
      * @returns {Error} 400 - client side error

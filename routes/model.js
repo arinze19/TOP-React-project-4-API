@@ -1,8 +1,8 @@
 // Base Models
 /**
- * @typedef Product 
- * @property {integer} id 
- * @property {string} name 
+ * @typedef Product
+ * @property {integer} id
+ * @property {string} name
  * @property {number} price
  * @property {string} description
  * @property {[integer]} availableSizes
@@ -13,13 +13,12 @@
 /**
  * @typedef Comment
  * @property {integer} id
- * @property {User.model} User 
+ * @property {User.model} User
  * @property {string} remark
  * @property {string} comment
- * @property {number} star 
+ * @property {number} star
  * @property {string} date
  */
-
 
 /**
  * @typedef User
@@ -28,34 +27,46 @@
  * @property {string} email
  */
 
-
 // Request Models
 
-
 /**
- * @typedef SignupRequest 
- * @property {string} email.required  
+ * @typedef SignupRequest
+ * @property {string} email.required
  * @property {string} name.required
  * @property {string} password.required
  */
 
 /**
- * @typedef SigninRequest 
- * @property {string} name.required 
+ * @typedef SigninRequest
+ * @property {string} name.required
  * @property {string} password.required
  */
 
+/**
+ * @typedef PostCommentRequest
+ * @property {string} remark
+ * @property {string} comment
+ * @property {number} star
+ */
 
+/**
+ * @typedef PostProductRequest 
+ * @property {string} name
+ * @property {number} price
+ * @property {string} description
+ * @property {[integer]} availableSizes
+ * @property {[string]} imagesUrl
+ */
 
 // Response Models
 
 /**
- * @typedef AuthResponse 
- * @property {string} token 
+ * @typedef AuthResponse
+ * @property {string} token
  * @property {User.model} user
  */
 
 /**
- * @typedef Error 
+ * @typedef Error
  * @property {string} message
  */

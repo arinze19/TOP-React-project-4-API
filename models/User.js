@@ -25,7 +25,7 @@ userSchema.virtual('password').get(function () {
   return this.hashedPassword;
 });
 
-userSchema.virtual('password').set(function () {
+userSchema.virtual('password').set(function (plainText) {
   const salt = bcrypt.genSaltSync(10);
   this.hashedPassword = bcrypt.hashSync(plainText, salt);
 });
