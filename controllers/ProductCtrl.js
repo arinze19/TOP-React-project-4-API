@@ -22,9 +22,11 @@ class ProductCtrl {
   static async getAllProducts(req, res, next) {
     let products = await Product.find({});
 
+    console.log(products);
+
     res.status(200).send({
       data: {
-        products: products.forEach((prod) =>
+        products: products.map((prod) =>
           OutputFormatters.formatProduct(prod)
         ),
       },
@@ -70,7 +72,7 @@ class ProductCtrl {
     });
 
     await newComment.save();
-    res.status(201).send({ data: newComment })
+    res.status(201).send({ data: newComment });
   }
 }
 
