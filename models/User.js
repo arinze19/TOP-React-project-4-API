@@ -30,4 +30,4 @@ userSchema.virtual('password').set(function () {
   this.hashedPassword = bcrypt.hashSync(plainText, salt);
 });
 
-exports.default = model('user', userSchema)
+module.exports = model('User', userSchema)

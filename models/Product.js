@@ -31,27 +31,8 @@ const productSchema = new Schema({
   ],
   comments: [
     {
-      user: {
-        type: String,
-        ref: 'User',
-        required: true,
-      },
-      remark: {
-        type: String,
-        required: true,
-      },
-      comment: {
-        type: String,
-        required: true,
-      },
-      star: {
-        type: Number,
-        required: true,
-      },
-      date: {
-        type: Date,
-        default: Date.now(),
-      },
+      type: String,
+      ref: 'Comment',
     },
   ],
 });
