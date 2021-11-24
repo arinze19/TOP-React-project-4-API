@@ -1,12 +1,12 @@
 const dotenv = require('dotenv').config();
 
-const env = process.env.NODE_ENV || 'development';
+// const env = process.env.NODE_ENV || 'development';
 const port = process.env.PORT || 8080;
-const isProduction = env === 'development';
+// const isProduction = env === 'development';
 
-if (!isProduction) {
-  dotenv.config({ silent: true }); //surpress env warnings in production
-}
+// if (!isProduction) {
+//   dotenv.config({ silent: true }); //surpress env warnings in production
+// }
 
 const swaggerOptions = {
   swaggerDefinition: {
