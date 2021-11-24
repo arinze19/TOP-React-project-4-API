@@ -15,8 +15,8 @@ class OutputFormatters {
       description: product.description,
       availableSizes: product.availableSizes,
       imagesUrl: product.imagesUrl,
-      comments: product.comments,
-    };
+      comments: product.comments
+    }
   }
 }
 
