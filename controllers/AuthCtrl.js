@@ -63,6 +63,10 @@ class AuthCtrl {
       },
     });
   }
+
+  static test(req, res, next) {
+    res.send({ message: 'hello' });
+  }
 }
 
 module.exports = AuthCtrl;
