@@ -36,7 +36,7 @@ class ProductRoutes {
      * @returns {Error} 400 - client side error
      * @returns {Error} 500 - internal server error
      */
-    router.route('/product/:id').post(ProductCtrl.getProduct);
+    router.route('/product/:id').get(ProductCtrl.getProduct);
     /**
      * @route GET /products
      * @group Product
@@ -45,7 +45,7 @@ class ProductRoutes {
      * @returns {Error} 400 - client side error
      * @returns {Error} 500 - internal server error
      */
-    router.route('/products').post(ProductCtrl.getAllProducts);
+    router.route('/products').get(ProductCtrl.getAllProducts);
   }
 }
 
