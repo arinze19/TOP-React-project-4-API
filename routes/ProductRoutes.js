@@ -12,10 +12,11 @@ class ProductRoutes {
      * @returns {Error} 400 - client side error
      * @returns {Error} 500 - internal server error
      * @security JWT
+     * AuthMiddleware.authenticate, 
      */
     router
-      .route('/product/:id/comment')
-      .post(AuthMiddleware.authenticate, ProductCtrl.createComment);
+      .route('/product/:prodId/comment')
+      .post(ProductCtrl.createComment);
     /**
      * @route POST /product
      * @group Product
@@ -38,12 +39,12 @@ class ProductRoutes {
      * @returns {Error} 400 - client side error
      * @returns {Error} 500 - internal server error
      */
-    router.route('/product/:id').get(ProductCtrl.getProduct);
+    router.route('/product/:prodId').get(ProductCtrl.getProduct);
     /**
      * @route GET /products
      * @group Product
      * @produces application/json
-     * @returns {[Product.model]} 201
+     * @returns {Array.<Product>} 201
      * @returns {Error} 400 - client side error
      * @returns {Error} 500 - internal server error
      */

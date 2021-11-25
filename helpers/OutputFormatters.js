@@ -15,7 +15,18 @@ class OutputFormatters {
       description: product.description,
       availableSizes: product.availableSizes,
       imagesUrl: product.imagesUrl,
-      comments: product.comments
+      comments: product.comments.map(comment => this.formatComment(comment))
+    }
+  }
+
+  static formatComment(comment) {
+    return {
+      id: comment._id,
+      user: comment.user,
+      remark: comment.remark,
+      comment: comment.comment,
+      star: comment.star,
+      date: comment.date
     }
   }
 }

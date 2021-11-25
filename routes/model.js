@@ -5,8 +5,8 @@
  * @property {string} name
  * @property {number} price
  * @property {string} description
- * @property {[integer]} availableSizes
- * @property {[string]} imagesUrl
+ * @property {Array.<integer>} availableSizes
+ * @property {Array.<Image>} image
  * @property {Array.<Comment>} comment
  */
 
@@ -18,6 +18,12 @@
  * @property {string} comment
  * @property {number} star
  * @property {string} date
+ */
+
+/**
+ * @typedef Image 
+ * @property {string} type 
+ * @property {string} url
  */
 
 /**
@@ -54,8 +60,8 @@
  * @property {string} name
  * @property {number} price
  * @property {string} description
- * @property {[integer]} availableSizes
- * @property {[string]} imagesUrl
+ * @property {Array.<integer>} availableSizes
+ * @property {Array.<Image>} images
  */
 
 // Response Models

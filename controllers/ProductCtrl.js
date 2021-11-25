@@ -4,13 +4,14 @@ const { OutputFormatters } = require('../helpers');
 
 class ProductCtrl {
   static async getProduct(req, res, next) {
-    const { prodId } = req.body;
+    const prodId = req.query;
 
-    let product = await Product.findById({ id: prodId });
+    let product = await Product.findOne({ id: prodId }).populate('comments');
 
     if (!product) {
       return next(new ErrorHandler('Product does not exist', 404));
     }
+
 
     res.status(200).send({
       data: {
@@ -36,7 +37,7 @@ class ProductCtrl {
   static async createProduct(req, res, next) {
     let { product } = req.body;
 
-    let prodExist = await Product.find({ name: product.name });
+    let prodExist = await Product.findOne({ name: product.name });
 
     if (prodExist) {
       return next(new ErrorHandler('Sorry, this product already exists', 401));
@@ -56,22 +57,28 @@ class ProductCtrl {
 
   static async createComment(req, res, next) {
     let { id } = req.user;
-    let { comment, prodId } = req.body;
+    let prodId = req.query;
+    let { comment } = req.body;
 
-    let product = await Product.find({ id: prodId });
+
+    let product = await Product.findOne({ id: prodId });
 
     if (!product) {
       return next(new ErrorHandler('Sorry, this product does not exist', 404));
     }
 
-    const newComment = new Comment({
+    let newComment = new Comment({
       user: id,
       remark: comment.remark,
       comment: comment.comment,
       star: comment.star,
     });
 
+    product.comments.push(newComment._id);
+
+    await product.save();
     await newComment.save();
+
     res.status(201).send({ data: newComment });
   }
 }
