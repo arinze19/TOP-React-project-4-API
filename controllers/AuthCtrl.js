@@ -23,7 +23,7 @@ class AuthCtrl {
     let user = await User.findOne({ email });
 
     if (user) {
-      return next(new ErrorHandler('User already exists', 403));
+      return next(new ErrorHandler('User already exists', 409));
     }
 
     user = new User({ name, email, password });
