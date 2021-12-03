@@ -6,7 +6,13 @@ class ProductCtrl {
   static async getProduct(req, res, next) {
     const { prodId } = req.params;
 
-    let product = await Product.findById(prodId).populate('comments');
+    let product = await Product.findById(prodId).populate({
+      path: 'comments',
+      populate: {
+        path: 'user',
+        select: 'name',
+      },
+    });
 
     if (!product) {
       return next(new ErrorHandler('Product does not exist', 404));
@@ -20,13 +26,17 @@ class ProductCtrl {
   }
 
   static async getAllProducts(req, res, next) {
-    let products = await Product.find({}).populate('comments');
+    let products = await Product.find({}).populate({
+      path: 'comments',
+      populate: {
+        path: 'user',
+        select: 'name',
+      },
+    });
 
     res.status(200).send({
       data: {
-        products: products.map((prod) =>
-          OutputFormatters.formatProduct(prod)
-        ),
+        products: products.map((prod) => OutputFormatters.formatProduct(prod)),
       },
     });
   }
@@ -56,7 +66,6 @@ class ProductCtrl {
     let { id } = req.user;
     let { prodId } = req.params;
     let { comment } = req.body;
-
 
     let product = await Product.findById(prodId);
 
