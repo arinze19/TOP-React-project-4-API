@@ -20,7 +20,7 @@ class ProductCtrl {
   }
 
   static async getAllProducts(req, res, next) {
-    let products = await Product.find({});
+    let products = await Product.find({}).populate('comments');
 
     res.status(200).send({
       data: {
