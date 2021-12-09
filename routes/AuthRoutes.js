@@ -6,7 +6,7 @@ class AuthRoutes {
     /**
      * @route POST /auth/sign-up
      * @group Authentication
-     * @param {SignupRequest} example.body.required
+     * @param {SignUpRequest.model} example.body.required
      * @produces application/json
      * @returns {AuthResponse.model} 201
      * @returns {Error} 400 - client side error
@@ -17,7 +17,7 @@ class AuthRoutes {
     /**
      * @route POST /auth/sign-in
      * @group Authentication
-     * @param {SigninRequest} example.body.required
+     * @param {SignInRequest.model} example.body.required
      * @produces application/json
      * @returns {AuthResponse.model} 200
      * @returns {Error} 400 - client side error

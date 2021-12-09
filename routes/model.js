@@ -36,15 +36,15 @@
 // Request Models
 
 /**
- * @typedef SignupRequest
+ * @typedef SignUpRequest
  * @property {string} email.required
  * @property {string} name.required
  * @property {string} password.required
  */
 
 /**
- * @typedef SigninRequest
- * @property {string} name.required
+ * @typedef SignInRequest
+ * @property {string} email.required
  * @property {string} password.required
  */
 
