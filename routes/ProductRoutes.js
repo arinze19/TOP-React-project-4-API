@@ -12,11 +12,10 @@ class ProductRoutes {
      * @returns {Error} 400 - client side error
      * @returns {Error} 500 - internal server error
      * @security JWT
-     * AuthMiddleware.authenticate, 
      */
     router
       .route('/product/:prodId/comment')
-      .post(ProductCtrl.createComment);
+      .post(AuthMiddleware.authenticate, ProductCtrl.createComment);
     /**
      * @route POST /product
      * @group Product

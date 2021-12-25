@@ -24,8 +24,7 @@ class AuthRoutes {
      * @returns {Error} 500 - internal server error
      * @security JWT
      */
-    router.route('/auth/sign-in').post(AuthMiddleware.authenticate, AuthCtrl.signIn);
-    router.route('/test').get(AuthCtrl.test)
+    router.route('/auth/sign-in').post(AuthCtrl.signIn);
   }
 }
 
