@@ -12,6 +12,7 @@
     "express": "^4.17.1",
     "express-swagger-generator": "^1.1.17",
     "jsonwebtoken": "^8.5.1",
+    "mailgun-js": "^0.22.0",
     "mongoose": "^6.0.12",
     "morgan": "^1.10.0",
     "shortid": "^2.2.16"
