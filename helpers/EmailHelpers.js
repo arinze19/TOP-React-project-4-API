@@ -1,7 +1,4 @@
-const fs = require('fs');
-const path = require('path');
 const jwt = require('jsonwebtoken');
-const handlebars = require('handlebars');
 const Config = require('../config/index');
 
 class EmailHelpers {
@@ -33,7 +30,7 @@ class EmailHelpers {
         id: user.id,
         email: user.email,
       },
-      process.env.SECRET,
+      Config.secret,
       {
         expiresIn: '1d',
       }
@@ -68,33 +65,6 @@ class EmailHelpers {
     }
 
     return parseInt(resetCode);
-  }
-
-  static generateHtml(templateName, payload) {
-    const baseEmailTemplateString = fs.readFileSync(
-      path.join(
-        path.dirname(__dirname),
-        'communications',
-        'templates',
-        'baseEmailTemplate.hbs'
-      ),
-      'utf8'
-    );
-    const baseEmailTemplate = handlebars.compile(baseEmailTemplateString);
-
-    const templateString = fs.readFileSync(
-      path.join(
-        path.dirname(__dirname),
-        'communications',
-        'templates',
-        `${templateName}.hbs`
-      ),
-      'utf8'
-    );
-    const template = handlebars.compile(templateString);
-
-    const body = template(payload);
-    return baseEmailTemplate({ body });
   }
 }
 

@@ -20,7 +20,7 @@ const swaggerOptions = {
   },
   servers: [
     {
-      url: process.env.PORT ? 'https://react-project-4-api.herokuapp.com/api/v1' : `http://localhost:${port}`,
+      url:`http://localhost:${port}`,
       description: 'Local Sever',
     },
   ],

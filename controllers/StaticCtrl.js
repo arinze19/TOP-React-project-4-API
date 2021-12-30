@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const Config = require('../config');
 const { Mail } = require('../communications');
 const { User } = require('../models');
 const { EmailHelpers } = require('../helpers');
@@ -10,7 +11,7 @@ class StaticCtrl {
     let decoded;
 
     try {
-      decoded = jwt.verify(token, process.env.SECRET);
+      decoded = jwt.verify(token, Config.secret);
     } catch (err) {
       res.send({
         message: 'Sorry, something went wrong. perhaps the link has expired. try requesting for a new one',
