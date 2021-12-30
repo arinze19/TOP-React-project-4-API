@@ -17,7 +17,12 @@ class EmailHelpers {
           Forgetting passwords sure can be embarrassing but best belive it happens  <br />
           to all of us, here's your code to reset your password <br />
           
-          reset code <b>${code}</b>
+          reset code: <b>${code}</b>
+          <br />
+          <br />
+          
+          Cheers, <br />
+          The Octane Team
       `,
     };
   }
@@ -44,6 +49,7 @@ class EmailHelpers {
           Thank you and happy shopping!
           <br />
           <br />
+          Cheers, <br />
           The Octane Team
       `,
     };

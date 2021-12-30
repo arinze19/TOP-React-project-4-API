@@ -16,7 +16,7 @@ const userSchema = new Schema({
     required: true,
   },
   isEmailVerified: {
-    trpe: Boolean,
+    type: Boolean,
     default: false
   },
   hashedPassword: {
