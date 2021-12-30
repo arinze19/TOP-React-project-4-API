@@ -14,8 +14,8 @@ class EmailHelpers {
       subject: 'Forgot Password?',
       html: `
           Hello, <br />
-          Forgetting passwords sure can be embarrassing but best belive it happens  <br />
-          to all of us, here's your code to reset your password <br />
+          Forgetting passwords sure can be embarrassing but best believe it happens to all of us,  <br />
+          here's your code to reset your password <br />
           
           reset code: <b>${code}</b>
           <br />
@@ -30,15 +30,16 @@ class EmailHelpers {
   static getVerificationEmail(user) {
     const token = jwt.sign(
       {
+        id: user.id,
         email: user.email,
-        name: user.name,
       },
       process.env.SECRET,
       {
         expiresIn: '1d',
       }
     );
-    const url = `https://react-project-4-api.herokuapp.com/api/v1/verification/confirm-email/${token}`;
+    const url = `${Config.staging.test}/verification/confirm-email/${token}`;
+    console.log(url)
     return {
       from: EmailHelpers.getSender(),
       to: user.email,

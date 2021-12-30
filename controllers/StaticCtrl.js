@@ -18,7 +18,7 @@ class StaticCtrl {
       console.log(err);
     }
 
-    const user = User.findone({ email: decoded.email });
+    const user = await User.findById(decoded.id);
     user.isEmailVerified = true;
 
     await user.save();
