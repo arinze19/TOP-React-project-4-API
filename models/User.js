@@ -15,6 +15,10 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  isEmailVerified: {
+    trpe: Boolean,
+    default: false
+  },
   hashedPassword: {
     type: String,
     required: true,

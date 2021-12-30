@@ -35,6 +35,14 @@ const config = {
   database: {
     url: process.env.MONGO_URL,
   },
+  emailSenders: {
+    help: 'help@octane.io',
+    service: 'service@octane.io'
+  },
+  mailgun: {
+    apiKey: process.env.MAILGUN_API_KEY,
+    domain: process.env.MAILGUN_DOMAIN
+  }
 };
 
 module.exports = config;
