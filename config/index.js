@@ -40,8 +40,7 @@ const config = {
     service: 'service@octane.io'
   },
   staging: {
-    live: 'https://react-project-4-api.herokuapp.com/api/v1',
-    test: `http://localhost:${port}/api/v1`
+    link: process.env.PORT ? 'https://react-project-4-api.herokuapp.com/api/v1' : `http://localhost:${port}/api/v1`
   },
   mailgun: {
     apiKey: process.env.MAILGUN_API_KEY,

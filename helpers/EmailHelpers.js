@@ -38,7 +38,7 @@ class EmailHelpers {
         expiresIn: '1d',
       }
     );
-    const url = `${Config.staging.test}/verification/confirm-email/${token}`;
+    const url = `${Config.staging.link}/verification/confirm-email/${token}`;
     console.log(url)
     return {
       from: EmailHelpers.getSender(),
