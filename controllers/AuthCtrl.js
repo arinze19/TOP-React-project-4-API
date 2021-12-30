@@ -1,6 +1,8 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Config = require('../config');
+const { Mail } = require('../communications');
+const { EmailHelpers } = require('../helpers')
 const { User } = require('../models');
 const { ErrorHandler } = require('../helpers/ErrorHelpers');
 const { OutputFormatters } = require('../helpers');
@@ -28,6 +30,9 @@ class AuthCtrl {
 
     user = new User({ name, email, password });
     await user.save();
+
+    const payload = EmailHelpers.getVerificationEmail(user);
+    Mail.send(payload);
 
     res.status(201).send({
       data: {

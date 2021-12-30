@@ -1,5 +1,5 @@
 const dotenv = require('dotenv').config();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 5151; 
 
 const swaggerOptions = {
   swaggerDefinition: {

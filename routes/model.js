@@ -31,6 +31,7 @@
  * @property {integer} id
  * @property {string} name
  * @property {string} email
+ * @property {isEmailVerified} boolean
  */
 
 // Request Models
@@ -64,12 +65,22 @@
  * @property {Array.<Image>} images
  */
 
+/**
+ * @typedef ForgotEmailRequest 
+ * @property {string} email
+ */
+
 // Response Models
 
 /**
  * @typedef AuthResponse
  * @property {string} token
  * @property {User.model} user
+ */
+
+/**
+ * @typedef VerificationResponse 
+ * @property {string} message
  */
 
 /**

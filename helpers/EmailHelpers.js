@@ -5,36 +5,62 @@ const handlebars = require('handlebars');
 const Config = require('../config/index');
 
 class EmailHelpers {
-  static getForgotPassword() {}
+  static getForgotPassword(user) {
+    const code = EmailHelpers.generateCode();
+
+    return {
+      from: EmailHelpers.getSender(),
+      to: user.email,
+      subject: 'Forgot Password?',
+      html: `
+          Hello, <br />
+          Forgetting passwords sure can be embarrassing but best belive it happens  <br />
+          to all of us, here's your code to reset your password <br />
+          
+          reset code <b>${code}</b>
+      `,
+    };
+  }
 
   static getVerificationEmail(user) {
     const token = jwt.sign(
       {
         email: user.email,
-        name: user.name
+        name: user.name,
       },
       process.env.SECRET,
       {
         expiresIn: '1d',
       }
     );
-    const url = `${Config.port}/verification/${token}`
+    const url = `https://react-project-4-api.herokuapp.com/api/v1/verification/confirm-email/${token}`;
     return {
       from: EmailHelpers.getSender(),
-      to: emailAddress,
+      to: user.email,
       subject: 'Action Required: Please confirm your email',
       html: `
-        Hey there ${user.name},
-        Please confirm your email <a href=${url}>here</a>. Thank you and happy shopping!
-
-        Cheers,
-        The Octeane Team
+          Hey There ${user.name}, <br /> 
+          Please confirm your email <a href=${url}>here</a>. 
+          Thank you and happy shopping!
+          <br />
+          <br />
+          The Octane Team
       `,
     };
   }
 
   static getSender(sender = undefined) {
     return `Octane <${sender || Config.emailSenders.help}>`;
+  }
+
+  static generateCode(codeLength = 6) {
+    let resetCode = '';
+
+    for (let i = 0; i < codeLength; i++) {
+      resetCode += Math.floor(Math.random() * 10);
+    }
+
+    return parseInt(resetCode);
   }
 
   static generateHtml(templateName, payload) {
