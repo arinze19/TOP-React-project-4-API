@@ -4,6 +4,7 @@ class OutputFormatters {
       id: user._id,
       name: user.name,
       email: user.email,
+      isEmailVerified: user.isEmailVerified
     };
   }
 
