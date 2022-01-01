@@ -37,7 +37,7 @@ const handleError = (err, res) => {
   statusCode = statusCode || 500;
 
   res.status(statusCode).send({
-    massage: error,
+    message: error,
   });
 };
 

@@ -36,7 +36,6 @@ class EmailHelpers {
       }
     );
     const url = `${Config.staging.link}/verification/confirm-email/${token}`;
-    console.log(url)
     return {
       from: EmailHelpers.getSender(),
       to: user.email,
