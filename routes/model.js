@@ -31,7 +31,7 @@
  * @property {integer} id
  * @property {string} name
  * @property {string} email
- * @property {isEmailVerified} boolean
+ * @property {boolean} isEmailVerified
  */
 
 // Request Models
