@@ -55,7 +55,7 @@ class AuthCtrl {
         )
       );
     }
-    const valid = bcrypt.compare(String(password), user.password);
+    const valid = await bcrypt.compare(String(password), user.password);
 
     if (!valid) {
       return next(new ErrorHandler('Username or password is invaid', 401));
