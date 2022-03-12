@@ -1,5 +1,4 @@
 const { AuthCtrl } = require('../controllers');
-const { AuthMiddleware } = require('../middleware');
 
 class AuthRoutes {
   static route(router) {
