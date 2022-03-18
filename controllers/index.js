@@ -1,5 +1,5 @@
 const AuthCtrl = require('./AuthCtrl');
-const BookingCtrl = require('./Booking');
+const BookingCtrl = require('./BookingCtrl');
 const ProductCtrl = require('./ProductCtrl');
 
 module.exports = {

@@ -34,6 +34,14 @@
  * @property {boolean} isEmailVerified
  */
 
+/**
+ * @typedef Booking 
+ * @property {integer} id 
+ * @property {string} pin
+ * @property {number} count 
+ * @property {string} status
+ */
+
 // Request Models
 
 /**
@@ -86,4 +94,9 @@
 /**
  * @typedef Error
  * @property {string} message
+ */
+
+/**
+ * @typedef BookingResponse 
+ * @property {Booking.model} booking
  */

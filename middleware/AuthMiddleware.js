@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const Config = require('../config');
 const { ErrorHandler } = require('../helpers/ErrorHelpers');
 
 class AuthMiddleware {
