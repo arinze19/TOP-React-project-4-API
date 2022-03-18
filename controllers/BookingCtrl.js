@@ -1,5 +1,6 @@
 const { Booking } = require('../models');
 const { ErrorHandler } = require('../helpers/ErrorHelpers');
+const { StringHelpers } = require('../helpers');
 
 class BookingCtrl {
     static async verify(req, res, next) {
@@ -16,7 +17,22 @@ class BookingCtrl {
         }
 
         res.status(200).send({
-            giftCard: booking
+            data: {
+                booking
+            }
+        })
+    }
+
+    static async create(req, res, next) {
+        const pin = StringHelpers.generateBookingCode();
+
+        const booking = new Booking({ pin })
+        await booking.save();
+
+        res.status(201).send({
+            data: {
+                booking
+            }
         })
     }
 }
