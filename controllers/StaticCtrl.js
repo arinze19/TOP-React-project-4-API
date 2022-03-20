@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const Config = require('../config');
 const { Mail } = require('../communications');
-const { User } = require('../models');
+const { User, Subscriber } = require('../models');
 const { EmailHelpers } = require('../helpers');
 const { ErrorHandler } = require('../helpers/ErrorHelpers');
 
@@ -48,6 +48,31 @@ class StaticCtrl {
     res.send({
       message: 'An email with a reset code has been sent to this email',
     });
+  }
+
+  static async subscribe(req, res, next) {
+    const { email } = req.body;
+
+    let subscriber = await Subscriber.findOne({ email });
+
+    if(subscriber) {
+      return next(
+        new ErrorHandler(
+          'Ooops,looks like you are already subscribed to our newsletter',
+          409
+        )
+      );
+    }
+
+    subscriber = new Subscriber({ email });
+    await subscriber.save();
+
+    const payload = EmailHelpers.getNewsletterWelcomeEmail(email);
+    Mail.send(payload);
+
+    res.status(200).send({
+      message: `Thank you for subscribing to our newsletter, we promise you wont regret it`
+    })
   }
 }
 

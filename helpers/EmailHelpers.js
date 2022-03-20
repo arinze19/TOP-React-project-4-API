@@ -65,6 +65,29 @@ class EmailHelpers {
 
     return parseInt(resetCode);
   }
+
+  static getNewsletterWelcomeEmail(email) {
+    return {
+      from: EmailHelpers.getSender(),
+      to: email,
+      subject: 'Welcome to The Official Octane Newsletter 😁',
+      html: `
+        Hey There 👋, 
+        <br />
+        <br />
+
+        We're pretty excited to have you subscribe to our newsletter. We tend 
+        to call members of our community enantiomers and we're overjoyed to have you become the latest enantiomer.
+        <br />
+        We will use this medium occassionally to keep you in the loop with news, collection releases and promos here at octane
+        and we promise not to spam you. until next time, keep being awesome and have an amazing day.
+        <br />
+        <br />
+        Cheers,<br />
+        The Octane Team 
+      `
+    };
+  }
 }
 
 module.exports = EmailHelpers;

@@ -8,6 +8,7 @@ const bookingSchema = new Schema({
     },
     pin: {
         type: String,
+        unique: true
     },
     count: {
         type: Number,
