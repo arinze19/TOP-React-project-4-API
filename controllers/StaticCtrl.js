@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const Config = require('../config');
-const { Mail } = require('../communications');
+const { NodeMail } = require('../communications');
 const { User, Subscriber } = require('../models');
 const { EmailHelpers } = require('../helpers');
 const { ErrorHandler } = require('../helpers/ErrorHelpers');
@@ -43,7 +43,7 @@ class StaticCtrl {
     }
 
     const payload = EmailHelpers.getForgotPassword(user);
-    Mail.send(payload);
+    NodeMail.send(payload);
 
     res.send({
       message: 'An email with a reset code has been sent to this email',
@@ -68,7 +68,7 @@ class StaticCtrl {
     await subscriber.save();
 
     const payload = EmailHelpers.getNewsletterWelcomeEmail(email);
-    Mail.send(payload);
+    NodeMail.send(payload);
 
     res.status(200).send({
       message: `Thank you for subscribing to our newsletter, we promise you wont regret it`
