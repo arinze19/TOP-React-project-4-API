@@ -15,6 +15,7 @@
     "mailgun-js": "^0.22.0",
     "mongoose": "^6.0.12",
     "morgan": "^1.10.0",
+    "nodemailer": "^6.7.3",
     "shortid": "^2.2.16"
   },
   "scripts": {

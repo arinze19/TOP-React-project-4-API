@@ -45,6 +45,10 @@ const config = {
   mailgun: {
     apiKey: process.env.MAILGUN_API_KEY,
     domain: process.env.MAILGUN_DOMAIN
+  },
+  gmail: {
+    user: process.env.GMAIL_USER,
+    pass: process.env.GMAIL_PASSWORD
   }
 };
 
