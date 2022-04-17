@@ -14,6 +14,10 @@ const bookingSchema = new Schema({
         type: Number,
         default: 10
     },
+    discount: {
+        type: Number,
+        default: 0.20
+    },
     status: {
         type: String,
         enum: ['valid', 'expired'],
