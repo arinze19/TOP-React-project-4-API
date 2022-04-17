@@ -5,7 +5,7 @@ const { StringHelpers } = require('../helpers');
 class BookingCtrl {
     static async verify(req, res, next) {
         const { pin } = req.body;
-
+        
         const booking = await Booking.findOne({ pin });
 
         if (!booking) {
