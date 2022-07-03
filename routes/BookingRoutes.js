@@ -20,6 +20,7 @@ class BookingRoutes {
      * @returns {BookingResponse.model} 201
      * @returns {Error} 400 - client side error
      * @returns {Error} 500 - internal server error
+     * @security JWT
     */
     router.route('/booking/create').post(AuthMiddleware.authenticate, BookingCtrl.create)
   }

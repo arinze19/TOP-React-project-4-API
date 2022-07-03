@@ -10,7 +10,6 @@ class AuthRoutes {
      * @returns {AuthResponse.model} 201
      * @returns {Error} 400 - client side error
      * @returns {Error} 500 - internal server error
-     * @security JWT
      */
     router.route('/auth/sign-up').post(AuthCtrl.signUp);
     /**
@@ -21,7 +20,6 @@ class AuthRoutes {
      * @returns {AuthResponse.model} 200
      * @returns {Error} 400 - client side error
      * @returns {Error} 500 - internal server error
-     * @security JWT
      */
     router.route('/auth/sign-in').post(AuthCtrl.signIn);
   }
