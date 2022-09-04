@@ -10,6 +10,7 @@ const expressSwagger = expressSwaggerGenerator(app);
 
 const Config = require('./config');
 const Routes = require('./routes');
+const Logger = require('./config/logger');
 
 const { handleError } = require('./helpers/ErrorHelpers');
 
@@ -36,5 +37,5 @@ const bootstrap = async () => {
 };
 
 bootstrap().then(() => {
-  console.log(`Octane API is now running on port ${Config.port}`);
+  Logger.log(`Octane API is now running on port ${Config.port}`)
 });
