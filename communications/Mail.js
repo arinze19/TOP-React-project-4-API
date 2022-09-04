@@ -1,5 +1,6 @@
 const Mailgun = require('mailgun-js');
 const Config = require('../config');
+const Logger = require('../config/logger');
 
 const mailgun = new Mailgun({
   apiKey: Config.mailgun.apiKey,
@@ -10,9 +11,9 @@ class Mail {
   static async send(payload) {
     try {
       await mailgun.messages().send(payload);
-      console.log(`sent successfully ${payload.to}`)
+      Logger.log(`sent successfully ${payload.to}`)
     } catch (err) {
-      console.log(err);
+      Logger.error(err);
     }
   }
 }

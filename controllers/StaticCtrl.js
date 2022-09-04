@@ -6,6 +6,7 @@ const { User, Subscriber } = require('../models');
 const { EmailHelpers } = require('../helpers');
 const { ErrorHandler } = require('../helpers/ErrorHelpers');
 
+
 class StaticCtrl {
   static async verifyEmail(req, res, next) {
     const { token } = req.params;

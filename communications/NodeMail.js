@@ -1,7 +1,12 @@
 const nodemailer = require('nodemailer')
+const InlineCss = require('inline-css');
 const Config = require('../config');
+const Logger = require('../config/logger');
 
 const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false,
     service: 'gmail',
     auth: {
         user: Config.gmail.user,
@@ -12,10 +17,11 @@ const transporter = nodemailer.createTransport({
 class NodeMail {
     static async send(payload) {
         try {
+            payload.html = await InlineCss(payload.html, { url: ' ' });
             await transporter.sendMail(payload)
-            console.log(`sent successfully ${payload.to}`)
+            Logger.log(`sent successfully ${payload.to}`)
         } catch (error) {
-            console.log(error)
+            Logger.error(error)
         }
 
     }
