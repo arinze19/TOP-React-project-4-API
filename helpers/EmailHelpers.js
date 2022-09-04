@@ -1,26 +1,20 @@
 const jwt = require('jsonwebtoken');
 const Config = require('../config/index');
+const Handlebars = require('handlebars');
+const path = require('path')
+const fs = require('fs');
+
 
 class EmailHelpers {
   static getForgotPassword(user) {
     const code = EmailHelpers.generateCode();
+    const templateName = 'forgotPassword'
 
     return {
       from: EmailHelpers.getSender(),
       to: user.email,
       subject: 'Forgot Password?',
-      html: `
-          Hello, <br />
-          Forgetting passwords sure can be embarrassing but best believe it happens to all of us,  <br />
-          here's your code to reset your password <br />
-          
-          reset code: <b>${code}</b>
-          <br />
-          <br />
-          
-          Cheers, <br />
-          The Octane Team
-      `,
+      html: EmailHelpers.generateHtml(templateName, { code })
     };
   }
 
@@ -36,19 +30,13 @@ class EmailHelpers {
       }
     );
     const url = `${Config.staging.link}/verification/confirm-email/${token}`;
+    const templateName = 'verifyEmail';
+
     return {
       from: EmailHelpers.getSender(),
       to: user.email,
       subject: 'Action Required: Please confirm your email',
-      html: `
-          Hey There ${user.name}, <br /> 
-          Please confirm your email <a href=${url}>here</a>. 
-          Thank you and happy shopping!
-          <br />
-          <br />
-          Cheers, <br />
-          The Octane Team
-      `,
+      html: EmailHelpers.generateHtml(templateName, { name: user.name, verificationLink: url })
     };
   }
 
@@ -67,26 +55,25 @@ class EmailHelpers {
   }
 
   static getNewsletterWelcomeEmail(email) {
+    const templateName = 'newsletterSubscribe';
+
     return {
       from: EmailHelpers.getSender(),
       to: email,
-      subject: 'Welcome to The Official Octane Newsletter 😁',
-      html: `
-        Hey There 👋, 
-        <br />
-        <br />
-
-        We're pretty excited to have you subscribe to our newsletter. We tend 
-        to call members of our community enantiomers and we're overjoyed to have you become the latest enantiomer.
-        <br />
-        We will use this medium occassionally to keep you in the loop with news, collection releases and promos here at octane
-        and we promise not to spam you. until next time, keep being awesome and have an amazing day.
-        <br />
-        <br />
-        Cheers,<br />
-        The Octane Team 
-      `
+      subject: 'Welcome to The Official Octane Newsletter 🧪',
+      html: EmailHelpers.generateHtml(templateName)
     };
+  }
+
+  static generateHtml(templateName, payload) {
+    const baseEmailTemplateString = fs.readFileSync(path.join(path.dirname(__dirname), 'communications', 'templates', 'baseEmailTemplate.hbs'), 'utf8');
+    const baseEmailTemplate = Handlebars.compile(baseEmailTemplateString);
+
+    const templateString = fs.readFileSync(path.join(path.dirname(__dirname), 'communications', 'templates', `${templateName}Template.hbs`), 'utf8');
+    const template = Handlebars.compile(templateString);
+
+    const body = template(payload);
+    return baseEmailTemplate({ body });
   }
 }
 

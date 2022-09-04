@@ -1,3 +1,5 @@
+const Logger = require('../config/logger');
+
 class ErrorHandler extends Error {
   constructor(error, statusCode = 500) {
     super();
@@ -35,6 +37,14 @@ const handleError = (err, res) => {
   }
 
   statusCode = statusCode || 500;
+
+  if (statusCode >= 500) {
+    Logger.error(err);
+  } else if (statusCode >= 400 && statusCode < 500) {
+    Logger.warn(error);
+  } else {
+    Logger.log(error);
+  }
 
   res.status(statusCode).send({
     message: error,

@@ -1,0 +1,23 @@
+<td valign="middle" class="hero bg_white" style="padding: 2em 0 4em 0;">
+  <table>
+    <tr>
+      <td>
+        <div class="text" style="padding: 0 2.5em; text-align: center;">
+          <h2>Hey There {{name}} 👋🏾 ,</h2>
+          <br/>
+          <h3>Thanks for joining us at Octane</h3>
+
+          {{#if verificationLink}}
+            <h3>Please wisit the link below to verify your account: </h3>
+            <br/>
+            <div><b>{{verificationLink}}</b></div>
+          {{/if}}
+
+          <br/>
+          <p>You can also verify your account by clicking the button below</p>
+          <p><a href="{{verificationLink}}" class="btn btn-primary">Verify</a></p>
+        </div>
+      </td>
+    </tr>
+  </table>
+</td>
