@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const Config = require('../config');
+const Logger = require('../config/logger');
 const { NodeMail } = require('../communications');
 const { User, Subscriber } = require('../models');
 const { EmailHelpers } = require('../helpers');
@@ -16,11 +17,13 @@ class StaticCtrl {
       res.send({
         message: 'Sorry, something went wrong. perhaps the link has expired. try requesting for a new one',
       });
-      console.log(err);
+      Logger.error(err);
     }
 
     const user = await User.findById(decoded.id);
     user.isEmailVerified = true;
+
+    Logger.log(`${user.name} email has been verified successfully`)
 
     await user.save();
     res.send({
@@ -45,8 +48,10 @@ class StaticCtrl {
     const payload = EmailHelpers.getForgotPassword(user);
     NodeMail.send(payload);
 
+    Logger.log(`An email with a reset code has been sent to ${email}`)
+
     res.send({
-      message: 'An email with a reset code has been sent to this email',
+      message: `An email with a reset code has been sent to ${email}`,
     });
   }
 
@@ -69,6 +74,8 @@ class StaticCtrl {
 
     const payload = EmailHelpers.getNewsletterWelcomeEmail(email);
     NodeMail.send(payload);
+
+    Logger.log(`successfully added ${email} as a subsriber to the newsletter`)
 
     res.status(200).send({
       message: `Thank you for subscribing to our newsletter, we promise you wont regret it`
