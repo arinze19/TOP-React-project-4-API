@@ -23,8 +23,8 @@
     "winston": "^3.8.1"
   },
   "scripts": {
-    "start:dev": "nodemon server",
-    "start": "node server"
+    "start:dev": "nodemon server.js",
+    "start": "node server.js"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
