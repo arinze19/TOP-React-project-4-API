@@ -1,15 +1,15 @@
-const fs = require('fs');
+// const fs = require('fs');
 const chalk = require('chalk');
 const winston = require('winston');
 
-const logsDir = './logs';
+// const logsDir = './logs';
 
-if (!fs.existsSync(logsDir)) {
-  fs.mkdirSync(logsDir);
-}
+// if (!fs.existsSync(logsDir)) {
+//   fs.mkdirSync(logsDir);
+// }
 
 const tsFormat = () => {
-  return (new Date()).toLocaleDateString();
+  return new Date().toLocaleDateString();
 };
 
 const customFormat = winston.format.combine(
@@ -31,15 +31,15 @@ const logger = winston.createLogger({
       json: false,
       format: customFormat,
     }),
-    new winston.transports.File({
-      level: 'error',
-      filename: `${logsDir}/errors.log`,
-      timestamp: tsFormat,
-      json: false,
-      colorize: false,
-      maxSize: 5242880,
-      maxFiles: 3,
-    }),
+    // new winston.transports.File({
+    //   level: 'error',
+    //   filename: `${logsDir}/errors.log`,
+    //   timestamp: tsFormat,
+    //   json: false,
+    //   colorize: false,
+    //   maxSize: 5242880,
+    //   maxFiles: 3,
+    // }),
   ],
   exitOnError: false,
 });
