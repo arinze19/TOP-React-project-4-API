@@ -26,13 +26,7 @@ class ProductCtrl {
   }
 
   static async getAllProducts(req, res, next) {
-    let products = await Product.find({}).populate({
-      path: 'comments',
-      populate: {
-        path: 'user',
-        select: 'name',
-      },
-    });
+    let products = await Product.find({});
 
     res.status(200).send({
       data: {
