@@ -18,7 +18,8 @@ redis.on('error', err => {
     process.exit(1)
 });
 
-await redis.connect();
+// Connect to Redis
+redis.connect().catch(console.error);
 
 
 const RATE_LIMIT_WINDOW = 60;
