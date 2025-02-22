@@ -1,5 +1,5 @@
 const dotenv = require('dotenv').config();
-const port = process.env.PORT || 5151; 
+const port = process.env.PORT || 5151;
 
 const swaggerOptions = {
   swaggerDefinition: {
@@ -20,7 +20,7 @@ const swaggerOptions = {
   },
   servers: [
     {
-      url:`http://localhost:${port}`,
+      url: `http://localhost:${port}`,
       description: 'Local Sever',
     },
   ],
@@ -49,6 +49,11 @@ const config = {
   gmail: {
     user: process.env.GMAIL_USER,
     pass: process.env.GMAIL_PASSWORD
+  },
+  redis: {
+    host: process.env.REDIS_HOST,
+    password: process.env.REDIS_PASSWORD,
+    port: process.env.REDIS_PORT
   }
 };
 
