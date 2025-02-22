@@ -8,6 +8,8 @@ const app = express();
 const router = express.Router();
 const expressSwagger = expressSwaggerGenerator(app);
 
+const rateLimit = require("./middleware/RateLimitMiddleware");
+
 const Config = require('./config');
 const Routes = require('./routes');
 const Logger = require('./config/logger');
@@ -23,6 +25,9 @@ const bootstrap = async () => {
   app.use(express.json());
 
   expressSwagger(Config.swaggerOptions);
+
+  // use rate limiter
+  app.use(rateLimit);
 
   // use routes
   app.use('/api/v1', Routes.route(router));
